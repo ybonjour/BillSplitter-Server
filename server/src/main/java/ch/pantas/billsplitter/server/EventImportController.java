@@ -7,15 +7,22 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @EnableAutoConfiguration
-public class SynchronizeController {
+@RequestMapping("/")
+public class EventImportController {
 
-    @RequestMapping("/")
+    @RequestMapping("")
     @ResponseBody
-    String home() {
+    public String home(){
+        return "Splitty!";
+    }
+
+    @RequestMapping(value = "group", method = RequestMethod.POST)
+    @ResponseBody
+    public String importGroup() {
         return "Hello World!";
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(SynchronizeController.class, args);
+        SpringApplication.run(EventImportController.class, args);
     }
 }
