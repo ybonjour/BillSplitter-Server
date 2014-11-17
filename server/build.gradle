@@ -11,8 +11,10 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
+mainClassName = "com.shalastra.tvmaniac.TVManiacConfiguration"
+
 jar {
-    baseName = 'gs-spring-boot'
+    baseName = 'billsplitter-server'
     version =  '0.1.0'
 }
 
@@ -27,3 +29,5 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
 }
+
+task stage(dependsOn: ['clean', 'build', 'installApp'])
