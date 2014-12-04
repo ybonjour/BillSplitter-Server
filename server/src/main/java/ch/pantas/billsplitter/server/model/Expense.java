@@ -32,7 +32,7 @@ public class Expense {
     @NaturalId
     private User owner;
 
-    Expense() { }
+    protected Expense() { }
 
     public Expense(UUID id, Event event, Participant payer, String description, int amount, User owner) {
         this.id = id;

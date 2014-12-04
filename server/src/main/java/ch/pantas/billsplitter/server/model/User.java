@@ -13,7 +13,7 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    User() { }
+    protected User() { }
 
     public User(UUID id, String name) {
         this.id = id;

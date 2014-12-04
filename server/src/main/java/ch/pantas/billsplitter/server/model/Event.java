@@ -24,7 +24,7 @@ public class Event {
     @NaturalId
     private User owner;
 
-    Event(){ }
+    protected Event(){ }
 
     public Event(UUID id, String description, String currency, User owner) {
         this.id = id;

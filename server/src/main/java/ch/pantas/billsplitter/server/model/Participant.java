@@ -21,7 +21,7 @@ public class Participant {
     @NaturalId
     private User user;
 
-    Participant() { }
+    protected  Participant() { }
 
     public Participant(UUID id, Event event, User user) {
         this.id = id;
