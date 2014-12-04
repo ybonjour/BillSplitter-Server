@@ -12,7 +12,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
-mainClassName = "ch.pantas.billsplitter.server.SynchronizeController"
+mainClassName = "ch.pantas.billsplitter.server.Application"
 
 jar {
     baseName = 'billsplitter-server'
