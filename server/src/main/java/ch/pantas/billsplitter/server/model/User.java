@@ -12,20 +12,20 @@ public class User implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
-    private String name;
+    private String userName;
 
     protected User() { }
 
-    public User(UUID id, String name) {
+    public User(UUID id, String userName) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 }
