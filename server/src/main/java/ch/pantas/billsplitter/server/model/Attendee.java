@@ -5,10 +5,11 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-public class Attendee {
+public class Attendee implements Serializable {
 
     @Id
     private UUID id;

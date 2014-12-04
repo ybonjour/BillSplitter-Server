@@ -5,10 +5,11 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-public class Participant {
+public class Participant implements Serializable {
 
     @Id
     private UUID id;
@@ -21,7 +22,7 @@ public class Participant {
     @NaturalId
     private User user;
 
-    protected  Participant() { }
+    protected Participant() { }
 
     public Participant(UUID id, Event event, User user) {
         this.id = id;

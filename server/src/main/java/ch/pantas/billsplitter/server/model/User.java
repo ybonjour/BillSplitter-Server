@@ -3,10 +3,11 @@ package ch.pantas.billsplitter.server.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-public class User {
+public class User implements Serializable {
     @Id
     private UUID id;
 
