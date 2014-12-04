@@ -21,6 +21,8 @@ public class Attendee {
     @NaturalId
     private Participant participant;
 
+    Attendee() { }
+
     public Attendee(UUID id, Expense expense, Participant participant) {
         this.id = id;
         this.expense = expense;

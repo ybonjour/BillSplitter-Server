@@ -32,6 +32,8 @@ public class Expense {
     @NaturalId
     private User owner;
 
+    Expense() { }
+
     public Expense(UUID id, Event event, Participant payer, String description, int amount, User owner) {
         this.id = id;
         this.event = event;

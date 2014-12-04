@@ -13,6 +13,8 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    User() { }
+
     public User(UUID id, String name) {
         this.id = id;
         this.name = name;
