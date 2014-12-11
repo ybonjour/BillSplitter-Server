@@ -44,4 +44,4 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
 }
 
-task stage(dependsOn: ['build'])
+task stage(dependsOn: ['assemble'])
