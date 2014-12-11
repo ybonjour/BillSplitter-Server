@@ -12,8 +12,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.sql.DataSource;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 @ComponentScan
 @EnableAutoConfiguration
@@ -46,14 +44,5 @@ public class TestApplication extends WebMvcConfigurerAdapter {
         dataSource.setUsername(databaseUsername);
         dataSource.setPassword(databasePassword);
         return dataSource;
-    }
-
-    private URI retrieveDatabaseUri(){
-        try {
-            return new URI(System.getenv("DATABASE_URL"));
-        } catch (URISyntaxException e) {
-            //TODO: proper error handling
-            throw new RuntimeException("", e);
-        }
     }
 }

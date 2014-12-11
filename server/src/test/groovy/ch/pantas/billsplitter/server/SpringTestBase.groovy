@@ -11,4 +11,5 @@ import javax.transaction.Transactional
 @PropertySource("classpath:application.properties")
 @Transactional
 public class SpringTestBase extends Specification {
+
 }

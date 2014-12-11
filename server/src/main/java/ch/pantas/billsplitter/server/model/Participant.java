@@ -1,7 +1,5 @@
 package ch.pantas.billsplitter.server.model;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -17,11 +15,9 @@ public class Participant implements Serializable {
     private UUID id;
 
     @ManyToOne(optional = false)
-    @NaturalId
     private Event event;
 
     @ManyToOne(optional = false)
-    @NaturalId
     private User user;
 
     protected Participant() { }

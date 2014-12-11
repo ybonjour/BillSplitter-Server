@@ -17,11 +17,9 @@ public class Attendee implements Serializable {
     private UUID id;
 
     @ManyToOne(optional = false)
-    @NaturalId
     private Expense expense;
 
     @ManyToOne(optional = false)
-    @NaturalId
     private Participant participant;
 
     protected Attendee() { }

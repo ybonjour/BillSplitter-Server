@@ -1,7 +1,5 @@
 package ch.pantas.billsplitter.server.model;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,7 +22,6 @@ public class Event implements Serializable {
     private String currency;
 
     @ManyToOne(optional = false)
-    @NaturalId
     private User owner;
 
     protected Event(){ }
