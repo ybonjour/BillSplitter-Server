@@ -1,8 +1,11 @@
 package ch.pantas.billsplitter.server.controller;
 
-import ch.pantas.billsplitter.server.model.User;
-import ch.pantas.billsplitter.server.store.UserStore;
+import ch.pantas.billsplitter.server.model.Event;
+import ch.pantas.billsplitter.server.services.EventImporter;
+import ch.pantas.billsplitter.server.services.datatransfer.EventDto;
+import ch.pantas.billsplitter.server.store.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,26 +14,33 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/event")
 public class EventController {
 
     @Autowired
-    private UserStore userStore;
+    private EventStore eventStore;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @Autowired
+    EventImporter eventImporter;
+
+    @RequestMapping(value = "/{eventId}", method = RequestMethod.GET)
     @ResponseBody
-    public String home() {
-        return "Splitty!";
+    public EventDto getEvent(@PathVariable String eventId) {
+
+        UUID eventUuid = UUID.fromString(eventId);
+        Event event = eventStore.findOne(eventUuid);
+
+        EventDto eventDto = new EventDto();
+
+        return eventDto;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/{eventId}", method = RequestMethod.PUT)
     @ResponseBody
-    public String importGroup() {
+    public String updateEvent(@PathVariable EventDto event) {
 
-        User user = new User(UUID.randomUUID(), "MyUser");
+        eventImporter.load(event);
 
-        userStore.save(user);
-
-        return "Saved User: " + user.getId();
+        return "not implemented";
     }
 }
