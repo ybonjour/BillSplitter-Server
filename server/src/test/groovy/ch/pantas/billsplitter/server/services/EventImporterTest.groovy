@@ -1,9 +1,7 @@
 package ch.pantas.billsplitter.server.services
 
+import ch.pantas.billsplitter.server.persistence.EventImporter
 import ch.pantas.billsplitter.server.services.datatransfer.EventDto
-import org.junit.Before
-import org.junit.Test
-import org.springframework.beans.factory.annotation.Autowired
 
 class EventImporterTest extends GroovyTestCase {
 
@@ -18,7 +16,7 @@ class EventImporterTest extends GroovyTestCase {
         def eventDto = new EventDto()
 
         when:
-        eventImporter.load(eventDto)
+        eventImporter.addEvent(eventDto)
 
         then:
         fail()

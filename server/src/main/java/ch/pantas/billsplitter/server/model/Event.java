@@ -1,27 +1,15 @@
 package ch.pantas.billsplitter.server.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Entity
 public class Event implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
     private UUID id;
-
-    @Column(nullable = false)
     private String description;
-
-    @Column(nullable = false)
     private String currency;
-
-    @ManyToOne(optional = false)
     private User owner;
 
     protected Event(){ }

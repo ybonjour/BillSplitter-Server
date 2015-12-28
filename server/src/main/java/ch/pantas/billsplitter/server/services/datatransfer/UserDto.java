@@ -1,10 +1,14 @@
 package ch.pantas.billsplitter.server.services.datatransfer;
 
-import java.util.UUID;
-
 import ch.pantas.billsplitter.server.model.User;
 
-public class UserDto {
+import java.io.Serializable;
+import java.util.UUID;
+
+public class UserDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private UUID id;
     private String name;
 

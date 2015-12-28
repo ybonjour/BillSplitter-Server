@@ -1,25 +1,14 @@
 package ch.pantas.billsplitter.server.model;
 
-import org.hibernate.annotations.NaturalId;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Entity
 public class Attendee implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
     private UUID id;
-
-    @ManyToOne(optional = false)
     private Expense expense;
-
-    @ManyToOne(optional = false)
     private Participant participant;
 
     protected Attendee() { }
