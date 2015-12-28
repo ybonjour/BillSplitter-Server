@@ -7,6 +7,7 @@ import ch.pantas.billsplitter.server.services.datatransfer.UserDto;
 import org.prevayler.Prevayler;
 import org.prevayler.PrevaylerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -20,6 +21,18 @@ public class EventKeeper {
     public void setEventImporter(EventImporter eventImporter) {
         try {
             this.eventImporter = PrevaylerFactory.createPrevayler(eventImporter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+     * Take a system snapshot every day at midnight.
+     */
+    @Scheduled(cron = "0 0 0 * * *")
+    public void takeSnapshot() {
+        try {
+            eventImporter.takeSnapshot();
         } catch (Exception e) {
             e.printStackTrace();
         }
