@@ -8,14 +8,14 @@ public class Expense implements Serializable {
 
     private UUID id;
     private Event event;
-    private Participant payer;
+    private User payer;
     private String description;
     private int amount;
     private User owner;
 
     protected Expense() { }
 
-    public Expense(UUID id, Event event, Participant payer, String description, int amount, User owner) {
+    public Expense(UUID id, Event event, User payer, String description, int amount, User owner) {
         this.id = id;
         this.event = event;
         this.payer = payer;
@@ -32,7 +32,7 @@ public class Expense implements Serializable {
         return event;
     }
 
-    public Participant getPayer() {
+    public User getPayer() {
         return payer;
     }
 

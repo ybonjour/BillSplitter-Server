@@ -11,7 +11,7 @@ public class UserDto implements Serializable {
     private UUID id;
     private String name;
 
-    private UserDto() {
+    public UserDto() {
     }
 
     public UserDto(User user) {
@@ -23,15 +23,7 @@ public class UserDto implements Serializable {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
