@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class Participant implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2545769918825777204L;
 
     private UUID id;
     private Event event;

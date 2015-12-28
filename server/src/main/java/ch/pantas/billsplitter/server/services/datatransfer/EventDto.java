@@ -6,13 +6,15 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class EventDto implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -6739250520070216200L;
 
     private UUID id;
     private String description;
     private String currency;
     private UserDto owner;
+
+    private EventDto() {
+    }
 
     public EventDto(Event event) {
         this.id = event.getId();

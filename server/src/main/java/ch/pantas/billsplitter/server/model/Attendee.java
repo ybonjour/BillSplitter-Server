@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class Attendee implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -1288458829666535537L;
 
     private UUID id;
     private Expense expense;

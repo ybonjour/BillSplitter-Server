@@ -18,26 +18,22 @@ public class EventController {
     EventKeeper eventKeeper;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    @ResponseBody
     public Collection<EventDto> listEvents() {
         return eventKeeper.getEvents();
     }
 
     @RequestMapping(value = "/{eventId}", method = RequestMethod.GET)
-    @ResponseBody
     public EventDto getEvent(@PathVariable String eventId) {
         return eventKeeper.getEvent(UUID.fromString(eventId));
     }
 
-    @RequestMapping(value = "/{eventId}", method = RequestMethod.PUT)
-    @ResponseBody
-    public void updateEvent(@PathVariable EventDto event) {
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public void updateEvent(@RequestBody EventDto event) {
         eventKeeper.updateEvent(event);
     }
 
     // Temporary function to have some data to play around with.
     @RequestMapping(value = "/generate", method = RequestMethod.GET)
-    @ResponseBody
     public String generateEvent() {
 
         User owner = new User(UUID.randomUUID(), "test_user");
