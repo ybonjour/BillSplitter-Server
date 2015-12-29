@@ -1,6 +1,6 @@
 package ch.pantas.billsplitter.server.controller;
 
-import ch.pantas.billsplitter.server.services.EventKeeper;
+import ch.pantas.billsplitter.server.persistence.EventKeeper;
 import ch.pantas.billsplitter.server.services.datatransfer.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +14,12 @@ import java.util.Collection;
 @RequestMapping("/user")
 public class UserController {
 
+    private EventKeeper eventKeeper;
+
     @Autowired
-    EventKeeper eventKeeper;
+    public UserController(EventKeeper eventKeeper) {
+        this.eventKeeper = eventKeeper;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody

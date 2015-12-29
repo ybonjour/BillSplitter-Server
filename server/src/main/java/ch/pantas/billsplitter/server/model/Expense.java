@@ -1,35 +1,33 @@
 package ch.pantas.billsplitter.server.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.UUID;
 
 public class Expense implements Serializable {
     private static final long serialVersionUID = -2466768526207644050L;
 
     private UUID id;
-    private Event event;
     private User payer;
     private String description;
     private int amount;
     private User owner;
+    private Collection<User> attendees;
 
-    protected Expense() { }
+    public Expense() {
+    }
 
-    public Expense(UUID id, Event event, User payer, String description, int amount, User owner) {
+    public Expense(UUID id, User payer, String description, int amount, User owner, Collection<User> attendees) {
         this.id = id;
-        this.event = event;
         this.payer = payer;
         this.description = description;
         this.amount = amount;
         this.owner = owner;
+        this.attendees = attendees;
     }
 
     public UUID getId() {
         return id;
-    }
-
-    public Event getEvent() {
-        return event;
     }
 
     public User getPayer() {
@@ -46,5 +44,9 @@ public class Expense implements Serializable {
 
     public User getOwner() {
         return owner;
+    }
+
+    public Collection<User> getAttendees() {
+        return attendees;
     }
 }

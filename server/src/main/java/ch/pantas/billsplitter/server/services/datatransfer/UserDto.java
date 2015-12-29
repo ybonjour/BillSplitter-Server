@@ -3,6 +3,7 @@ package ch.pantas.billsplitter.server.services.datatransfer;
 import ch.pantas.billsplitter.server.model.User;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
 public class UserDto implements Serializable {
@@ -25,5 +26,31 @@ public class UserDto implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserDto other = (UserDto) o;
+        return Objects.equals(id, other.id) &&
+                Objects.equals(name, other.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

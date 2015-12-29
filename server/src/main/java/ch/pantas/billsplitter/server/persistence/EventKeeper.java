@@ -1,11 +1,9 @@
-package ch.pantas.billsplitter.server.services;
+package ch.pantas.billsplitter.server.persistence;
 
-import ch.pantas.billsplitter.server.persistence.EventImporter;
-import ch.pantas.billsplitter.server.persistence.UpdateEvent;
+import ch.pantas.billsplitter.server.services.EventImporter;
 import ch.pantas.billsplitter.server.services.datatransfer.EventDto;
 import ch.pantas.billsplitter.server.services.datatransfer.UserDto;
 import org.prevayler.Prevayler;
-import org.prevayler.PrevaylerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
@@ -18,12 +16,8 @@ public class EventKeeper {
     private Prevayler<EventImporter> eventImporter;
 
     @Autowired
-    public void setEventImporter(EventImporter eventImporter) {
-        try {
-            this.eventImporter = PrevaylerFactory.createPrevayler(eventImporter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public EventKeeper(Prevayler<EventImporter> eventImporter) {
+        this.eventImporter = eventImporter;
     }
 
     /*
@@ -38,8 +32,8 @@ public class EventKeeper {
         }
     }
 
-    public void updateEvent(EventDto event) {
-        eventImporter.execute(new UpdateEvent(event));
+    public void updateEvent(EventDto event, UUID user) {
+        eventImporter.execute(new UpdateEvent(event, user));
     }
 
     public EventDto getEvent(UUID uuid) {

@@ -1,6 +1,6 @@
 package ch.pantas.billsplitter.server.controller;
 
-import ch.pantas.billsplitter.server.services.EventKeeper;
+import ch.pantas.billsplitter.server.persistence.EventKeeper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -1,24 +1,30 @@
 package ch.pantas.billsplitter.server.controller;
 
 import ch.pantas.billsplitter.server.model.Event;
+import ch.pantas.billsplitter.server.model.Expense;
 import ch.pantas.billsplitter.server.model.User;
-import ch.pantas.billsplitter.server.services.EventKeeper;
+import ch.pantas.billsplitter.server.persistence.EventKeeper;
 import ch.pantas.billsplitter.server.services.datatransfer.EventDto;
 import ch.pantas.billsplitter.server.services.datatransfer.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.UUID;
+
+import static java.util.Arrays.asList;
 
 @RestController
 @RequestMapping("/event")
 public class EventController {
 
+    private EventKeeper eventKeeper;
+
     @Autowired
-    EventKeeper eventKeeper;
+    public EventController(EventKeeper eventKeeper) {
+        this.eventKeeper = eventKeeper;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Collection<EventDto> listEvents() {
@@ -31,8 +37,8 @@ public class EventController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public void updateEvent(@RequestBody EventDto event) {
-        eventKeeper.updateEvent(event);
+    public void updateEvent(@RequestParam("user") UUID user, @RequestBody EventDto event) {
+        eventKeeper.updateEvent(event, user);
     }
 
     // Temporary function to have some data to play around with.
@@ -48,12 +54,13 @@ public class EventController {
             hans = new User(iterator.next());
         }
 
+        Expense expense = new Expense(UUID.randomUUID(), hans, "desc", 123, owner, asList(owner, hans));
+
         UUID uuid = UUID.randomUUID();
-        Event event = new Event(uuid, "test_desc", "CHF", owner);
-        event.setParticipants(Arrays.asList(owner, hans));
+        Event event = new Event(uuid, "test_desc", "CHF", owner, asList(owner, hans), asList(expense));
         EventDto eventDto = new EventDto(event);
 
-        eventKeeper.updateEvent(eventDto);
+        eventKeeper.updateEvent(eventDto, owner.getId());
 
         return uuid.toString();
     }

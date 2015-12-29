@@ -3,7 +3,7 @@ package ch.pantas.billsplitter.server.services.datatransfer;
 import ch.pantas.billsplitter.server.model.Event;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -14,7 +14,8 @@ public class EventDto implements Serializable {
     private String description;
     private String currency;
     private UserDto owner;
-    private List<UserDto> participants;
+    private Collection<UserDto> participants;
+    private Collection<ExpenseDto> expenses;
 
     public EventDto() {
     }
@@ -26,6 +27,9 @@ public class EventDto implements Serializable {
         this.owner = new UserDto(event.getOwner());
         participants = event.getParticipants().stream()
                 .map(UserDto::new)
+                .collect(Collectors.toList());
+        expenses = event.getExpenses().stream()
+                .map(ExpenseDto::new)
                 .collect(Collectors.toList());
     }
 
@@ -45,7 +49,11 @@ public class EventDto implements Serializable {
         return owner;
     }
 
-    public List<UserDto> getParticipants() {
+    public Collection<UserDto> getParticipants() {
         return participants;
+    }
+
+    public Collection<ExpenseDto> getExpenses() {
+        return expenses;
     }
 }
